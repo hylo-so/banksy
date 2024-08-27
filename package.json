@@ -21,7 +21,8 @@
     "@types/node-fetch": "^3.0.2",
     "ts-jest": "^29.2.1",
     "ts-node": "^10.9.2",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "prettier": "^3.3.3"
   },
   "engines": {
     "node": ">= 10"
@@ -31,6 +32,8 @@
     "build": "napi build --platform --release banksy --dts internal.d.ts --js internal.js",
     "build:debug": "napi build --platform banksy",
     "tsc": "tsc && cp banksy/internal.d.ts dist/internal.d.ts",
+    "lint:fix": "prettier */*.js \"*/**/*{.js,.ts}\" -w",
+    "lint": "prettier */*.js \"*/**/*{.js,.ts}\" --check",
     "prepublishOnly": "napi prepublish -t npm",
     "test": "ava",
     "universal": "napi universal",
