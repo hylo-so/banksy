@@ -45,18 +45,6 @@ fn convert_to_pubkey(address: Uint8Array) -> Pubkey {
   Pubkey::try_from(address.as_ref()).unwrap()
 }
 
-// fn convert_from_pubkey(address: Pubkey) -> Uint8Array {
-//   Uint8Array::try_from(address.as_ref()).unwrap()
-// }
-
-// fn convert_to_keypair(secret: Uint8Array) -> Keypair {
-//   Keypair::from_bytes(secret.as_ref()).unwrap()
-// }
-
-// fn convert_from_keypair(secret: &Keypair) -> Uint8Array {
-//   Uint8Array::try_from(secret.secret().as_ref()).unwrap()
-// }
-
 fn convert_to_option_pubkey(address: Option<Uint8Array>) -> Option<Pubkey> {
   if address.is_some() {
     Some(Pubkey::try_from(address.unwrap().as_ref()).unwrap())
