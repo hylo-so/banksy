@@ -195,3 +195,5 @@ Cargo.lock
 !.yarn/versions
 
 *.node
+banksy/internal.d.ts
+banksy/internal.js
