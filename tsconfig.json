@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"declaration": true,
+		"module": "CommonJS",
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"target": "es2020",
+		"noImplicitAny": true,
+		"sourceMap": true,
+		"outDir": "dist",
+		"allowJs": true,
+		"baseUrl": "./banksy",
+		"paths": {
+			"banksy": ["./"]
+		},
+		"resolveJsonModule": true
+	},
+	"include": ["./banksy/**/*"]
+}

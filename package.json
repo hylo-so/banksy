@@ -1,0 +1,40 @@
+{
+  "name": "@hylo/banksy",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "napi": {
+    "name": "banksy",
+    "triples": {}
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@napi-rs/cli": "^2.18.4",
+    "@solana/spl-token": "^0.4.8",
+    "@solana/web3.js": "^1.95.3",
+    "@types/bs58": "^4.0.4",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^22.1.0",
+    "@types/node-fetch": "^3.0.2",
+    "ts-jest": "^29.2.1",
+    "ts-node": "^10.9.2",
+    "typescript": "5.0.4"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "scripts": {
+    "artifacts": "napi artifacts",
+    "build": "napi build --platform --release banksy --dts internal.d.ts --js internal.js",
+    "build:debug": "napi build --platform banksy",
+    "tsc": "tsc && cp banksy/internal.d.ts dist/internal.d.ts",
+    "prepublishOnly": "napi prepublish -t npm",
+    "test": "ava",
+    "universal": "napi universal",
+    "version": "napi version"
+  },
+  "packageManager": "pnpm@8.15.1+sha512.831cf4c5f8b8374af71521d4d153db49d7086de615c2af7cb5e9d7eb8ba630ddac46fea495d643e552ef2e68a3aa99a3e5e9fbee8696702967504df5c59cb273"
+}
