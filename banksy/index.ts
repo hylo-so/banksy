@@ -501,6 +501,7 @@ export interface AddedAccount {
 
 export class Banksy {
   private inner: BankskyInner;
+  private static _singleton: ProgramTestContext;
   constructor() {
     this.inner = new BankskyInner();
   }
@@ -514,6 +515,15 @@ export class Banksy {
       transactionAccountLockLimit,
     );
     return new ProgramTestContext(ctx);
+  }
+
+  async getSingleton(
+    computeUnitsMax?: bigint,
+    transactionAccountLockLimit?: bigint,
+  ) : Promise<ProgramTestContext> {
+    if (!Banksy._singleton)
+      Banksy._singleton = await this.start(computeUnitsMax, transactionAccountLockLimit);
+    return Banksy._singleton;
   }
 
   addProgram(name: string, programId: PublicKey) {
