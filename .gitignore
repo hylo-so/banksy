@@ -84,7 +84,6 @@ typings/
 
 # Nuxt.js build / generate output
 .nuxt
-dist
 
 # Gatsby files
 .cache/
@@ -121,7 +120,7 @@ dist
 .AppleDouble
 .LSOverride
 
-# Icon must end with two 
+# Icon must end with two
 Icon
 
 
@@ -193,7 +192,3 @@ Cargo.lock
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-
-*.node
-banksy/internal.d.ts
-banksy/internal.js
