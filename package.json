@@ -1,5 +1,5 @@
 {
-  "name": "@hylo/banksy",
+  "name": "@hylo-so/banksy",
   "version": "0.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,19 +14,7 @@
   "devDependencies": {
     "@napi-rs/cli": "^2.18.4",
     "@solana/spl-token": "^0.4.8",
-    "@solana/web3.js": "^1.95.3",
-    "@types/bs58": "^4.0.4",
-    "@types/jest": "^29.5.13",
-    "@types/node": "^22.7.4",
-    "@types/node-fetch": "^3.0.2",
-    "prettier": "^3.3.3",
-    "ts-jest": "^29.2.5",
-    "ts-node": "^10.9.2",
-    "typescript": "5.0.4"
-  },
-  "engines": {
-    "node": ">= 10"
-  },
+    "@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
   "scripts": {
     "artifacts": "napi artifacts",
     "build": "napi build --platform --release banksy --dts internal.d.ts --js internal.js",
