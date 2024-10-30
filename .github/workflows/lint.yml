@@ -23,7 +23,5 @@ jobs:
           components: clippy
       - name: Install dependencies
         run: corepack enable && pnpm install
-      #- name: Lint rust
-        #run: pnpm lint:rust
       - name: Lint JS
-        run: pnpm lint:js
+        run: pnpm lint
