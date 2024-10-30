@@ -29,24 +29,24 @@ jobs:
           - host: macos-13
             target: x86_64-apple-darwin
             build: |
-              yarn build
+              pnpm build
               strip -x banksy/*.node
           - host: ubuntu-latest
             target: x86_64-unknown-linux-gnu
             docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian
             build: |-
               set -e &&
-              yarn build --target x86_64-unknown-linux-gnu &&
+              pnpm build --target x86_64-unknown-linux-gnu &&
               strip banksy/*.node
           - host: ubuntu-latest
             target: x86_64-unknown-linux-musl
             docker: ghcr.io/napi-rs/napi-rs/nodejs-rust@sha256:10573060f07edd964f5de04a92d19f8228b396310a5c9c0df23ef69b1f566ab9
-            build: set -e && yarn build && strip banksy/*.node
+            build: set -e && pnpm build && strip banksy/*.node
           - host: macos-13
             target: aarch64-apple-darwin
             build: |
               rustup target add aarch64-apple-darwin &&
-              yarn build --target aarch64-apple-darwin
+              pnpm build --target aarch64-apple-darwin
               strip -x banksy/*.node
     name: stable - ${{ matrix.settings.target }} - node@18
     runs-on: ${{ matrix.settings.host }}
@@ -58,7 +58,7 @@ jobs:
         with:
           node-version: 18
           check-latest: true
-          cache: yarn
+          cache: pnpm
       - name: Install
         uses: dtolnay/rust-toolchain@stable
         if: ${{ !matrix.settings.docker }}
@@ -80,7 +80,7 @@ jobs:
         if: ${{ matrix.settings.setup }}
         shell: bash
       - name: Install dependencies
-        run: corepack enable && yarn install
+        run: corepack enable && pnpm install
       - name: Build in docker
         uses: addnab/docker-run-action@v3
         if: ${{ matrix.settings.docker }}
@@ -115,9 +115,9 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           check-latest: true
-          cache: yarn
+          cache: pnpm
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
@@ -127,7 +127,7 @@ jobs:
         run: ls -R .
         shell: bash
       - name: Test bindings
-        run: docker run --rm -v $(pwd):/build -w /build node:${{ matrix.node }}-slim yarn test
+        run: docker run --rm -v $(pwd):/build -w /build node:${{ matrix.node }}-slim pnpm test
   test-linux-x64-musl-binding:
     name: Test bindings on x86_64-unknown-linux-musl - node@${{ matrix.node }}
     needs:
@@ -145,11 +145,11 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           check-latest: true
-          cache: yarn
+          cache: pnpm
       - name: Install dependencies
         run: |
-          yarn config set supportedArchitectures.libc "musl"
-          yarn install
+          pnpm config set supportedArchitectures.libc "musl"
+          pnpm install
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
@@ -159,7 +159,7 @@ jobs:
         run: ls -R .
         shell: bash
       - name: Test bindings
-        run: docker run --rm -v $(pwd):/build -w /build node:${{ matrix.node }}-alpine yarn test
+        run: docker run --rm -v $(pwd):/build -w /build node:${{ matrix.node }}-alpine pnpm test
   universal-macOS:
     name: Build universal macOS binary
     needs:
@@ -172,9 +172,9 @@ jobs:
         with:
           node-version: 18
           check-latest: true
-          cache: yarn
+          cache: pnpm
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
       - name: Download macOS x64 artifact
         uses: actions/download-artifact@v3
         with:
@@ -186,9 +186,9 @@ jobs:
           name: bindings-aarch64-apple-darwin
           path: artifacts
       - name: Combine binaries
-        run: yarn universal
+        run: pnpm universal
       - name: Test universal binary
-        run: cp banksy.darwin-universal.node banksy/ && yarn test
+        run: cp banksy.darwin-universal.node banksy/ && pnpm test
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
