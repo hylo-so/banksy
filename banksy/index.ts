@@ -520,9 +520,12 @@ export class Banksy {
   async getSingleton(
     computeUnitsMax?: bigint,
     transactionAccountLockLimit?: bigint,
-  ) : Promise<ProgramTestContext> {
+  ): Promise<ProgramTestContext> {
     if (!Banksy._singleton)
-      Banksy._singleton = await this.start(computeUnitsMax, transactionAccountLockLimit);
+      Banksy._singleton = await this.start(
+        computeUnitsMax,
+        transactionAccountLockLimit,
+      );
     return Banksy._singleton;
   }
 
