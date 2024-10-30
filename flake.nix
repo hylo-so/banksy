@@ -9,13 +9,16 @@
       system = "aarch64-darwin";
       overlays = [ (import rust-overlay) ];
     }; {
-      devShell.aarch64-darwin = mkShell {
-        buildInputs = [
+      devShell.aarch64-darwin =  mkShell {
+        buildInputs = with darwin.apple_sdk.frameworks; [
           rust-bin.stable.latest.default
           rust-analyzer
           nodePackages.pnpm
           nodePackages.typescript
           nodePackages.typescript-language-server
+          Security
+          System
+          SystemConfiguration
         ];
       };
     };
