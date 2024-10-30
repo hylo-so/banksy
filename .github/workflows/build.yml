@@ -52,13 +52,15 @@ jobs:
     runs-on: ${{ matrix.settings.host }}
     steps:
       - uses: actions/checkout@v3
-      - name: Setup node
-        uses: actions/setup-node@v3
+      - name: Setup pnpm
+        uses: actions/checkout@v3
+        uses: pnpm/action-setup@v4
         if: ${{ !matrix.settings.docker }}
         with:
           node-version: 18
           check-latest: true
           cache: pnpm
+          version: 9
       - name: Install
         uses: dtolnay/rust-toolchain@stable
         if: ${{ !matrix.settings.docker }}
@@ -110,12 +112,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Setup node
-        uses: actions/setup-node@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
           node-version: ${{ matrix.node }}
           check-latest: true
           cache: pnpm
+          version: 9
       - name: Install dependencies
         run: pnpm install
       - name: Download artifacts
@@ -140,12 +143,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Setup node
-        uses: actions/setup-node@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
           node-version: ${{ matrix.node }}
           check-latest: true
           cache: pnpm
+          version: 9
       - name: Install dependencies
         run: |
           pnpm config set supportedArchitectures.libc "musl"
@@ -167,20 +171,20 @@ jobs:
     runs-on: macos-13
     steps:
       - uses: actions/checkout@v3
-      - name: Setup node
-        uses: actions/setup-node@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
           node-version: 18
           check-latest: true
           cache: pnpm
+          version: 9
       - name: Install dependencies
         run: pnpm install
       - name: Download macOS x64 artifact
         uses: actions/download-artifact@v3
         with:
           name: bindings-x86_64-apple-darwin
-          path: artifacts
-      - name: Download macOS arm64 artifact
+          path: artifacts - name: Download macOS arm64 artifact
         uses: actions/download-artifact@v3
         with:
           name: bindings-aarch64-apple-darwin
