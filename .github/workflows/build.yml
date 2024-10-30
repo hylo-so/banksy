@@ -53,7 +53,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup pnpm
-        uses: actions/checkout@v3
         uses: pnpm/action-setup@v4
         if: ${{ !matrix.settings.docker }}
         with:
