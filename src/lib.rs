@@ -88,12 +88,14 @@ impl Banksy {
     program_id: Uint8Array,
     program_authority: Uint8Array,
     program_data: Uint8Array,
+    upgrade_slot: BigInt,
   ) {
     self.call_stack.push(CallMsg::AddUpgradeableProgram {
       name: name.to_string(),
       program_id: convert_to_pubkey(program_id),
       program_authority: convert_to_pubkey(program_authority),
       program_data: convert_to_pubkey(program_data),
+      upgrade_slot: upgrade_slot.get_u64().1,
     })
   }
 
