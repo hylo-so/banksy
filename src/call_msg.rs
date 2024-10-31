@@ -13,6 +13,7 @@ pub enum CallMsg {
     program_id: Pubkey,
     program_authority: Pubkey,
     program_data: Pubkey,
+    upgrade_slot: u64,
   },
   AddAccount {
     address: Pubkey,
@@ -57,12 +58,13 @@ impl CallMsg {
           program_id,
           program_authority,
           program_data,
+          upgrade_slot,
         } => pt.add_bpf_program_with_program_data(
           name.as_str(),
           *program_id,
           Some(*program_authority),
           *program_data,
-          0,
+          *upgrade_slot,
           None,
         ),
         CallMsg::AddAccountWithLamports {
