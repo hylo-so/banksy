@@ -34,6 +34,7 @@
     "tsc": "tsc && cp banksy/internal.d.ts dist/internal.d.ts",
     "lint:fix": "prettier */*.js \"*/**/*{.js,.ts}\" -w",
     "lint": "prettier */*.js \"*/**/*{.js,.ts}\" --check",
+    "lint:rust": "cargo clippy",
     "prepublishOnly": "napi prepublish -t npm",
     "test": "ava",
     "universal": "napi universal",
