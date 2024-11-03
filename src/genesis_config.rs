@@ -64,7 +64,7 @@ impl GenesisConfig {
   }
   #[napi(getter)]
   pub fn rent(&self) -> Rent {
-    self.0.rent.clone().into()
+    self.0.rent.into()
   }
   #[napi(getter)]
   pub fn inflation(&self) -> Inflation {
@@ -72,7 +72,7 @@ impl GenesisConfig {
   }
   #[napi(getter)]
   pub fn epoch_schedule(&self) -> EpochSchedule {
-    self.0.epoch_schedule.clone().into()
+    self.0.epoch_schedule.into()
   }
   #[napi(getter)]
   pub fn cluster_type(&self) -> String {

@@ -45,6 +45,7 @@ pub struct Banksy {
 
 #[napi]
 impl Banksy {
+  #[allow(clippy::new_without_default)]
   #[napi(constructor)]
   pub fn new() -> Self {
     Banksy { call_stack: vec![] }
@@ -148,6 +149,7 @@ impl Banksy {
     })
   }
 
+  #[allow(clippy::too_many_arguments)]
   #[napi]
   pub fn add_token_account(
     &mut self,
