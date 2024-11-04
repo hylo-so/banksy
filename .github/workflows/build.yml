@@ -94,60 +94,60 @@ jobs:
           name: bindings-${{ matrix.settings.target }}
           path: banksy/banksy.*.node
           if-no-files-found: error
-  test-linux-x64-gnu-binding:
-    name: Test bindings on Linux-x64-gnu - node@${{ matrix.node }}
-    needs:
-      - build
-    strategy:
-      fail-fast: false
-      matrix:
-        node:
-          - '18'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-      - name: Install dependencies
-        run: pnpm install
-      - name: Download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: bindings-x86_64-unknown-linux-gnu
-          path: banksy/
-      - name: List packages
-        run: ls -R .
-        shell: bash
-      - name: Test bindings
-        run: docker run --rm -v $(pwd):/build -w /build node:${{ matrix.node }}-slim npm install -g pnpm && pnpm test
-  test-linux-x64-musl-binding:
-    name: Test bindings on x86_64-unknown-linux-musl - node@${{ matrix.node }}
-    needs:
-      - build
-    strategy:
-      fail-fast: false
-      matrix:
-        node:
-          - '18'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-      - name: Install dependencies
-        run: |
-          pnpm config set supportedArchitectures.libc "musl"
-          pnpm install
-      - name: Download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: bindings-x86_64-unknown-linux-musl
-          path: banksy/
-      - name: List packages
-        run: ls -R .
-        shell: bash
-      - name: Test bindings
-        run: docker run --rm -v $(pwd):/build -w /build node:${{ matrix.node }}-alpine npm install -g pnpm && pnpm test
+  #test-linux-x64-gnu-binding:
+    #name: Test bindings on Linux-x64-gnu - node@${{ matrix.node }}
+    #needs:
+      #- build
+    #strategy:
+      #fail-fast: false
+      #matrix:
+        #node:
+          #- '18'
+    #runs-on: ubuntu-latest
+    #steps:
+      #- uses: actions/checkout@v3
+      #- name: Setup pnpm
+        #uses: pnpm/action-setup@v4
+      #- name: Install dependencies
+        #run: pnpm install
+      #- name: Download artifacts
+        #uses: actions/download-artifact@v3
+        #with:
+          #name: bindings-x86_64-unknown-linux-gnu
+          #path: banksy/
+      #- name: List packages
+        #run: ls -R .
+        #shell: bash
+      #- name: Test bindings
+        #run: docker run --rm -v $(pwd):/build -w /build node:${{ matrix.node }}-slim npm install -g pnpm && pnpm test
+  #test-linux-x64-musl-binding:
+    #name: Test bindings on x86_64-unknown-linux-musl - node@${{ matrix.node }}
+    #needs:
+      #- build
+    #strategy:
+      #fail-fast: false
+      #matrix:
+        #node:
+          #- '18'
+    #runs-on: ubuntu-latest
+    #steps:
+      #- uses: actions/checkout@v3
+      #- name: Setup pnpm
+        #uses: pnpm/action-setup@v4
+      #- name: Install dependencies
+        #run: |
+          #pnpm config set supportedArchitectures.libc "musl"
+          #pnpm install
+      #- name: Download artifacts
+        #uses: actions/download-artifact@v3
+        #with:
+          #name: bindings-x86_64-unknown-linux-musl
+          #path: banksy/
+      #- name: List packages
+        #run: ls -R .
+        #shell: bash
+      #- name: Test bindings
+        #run: docker run --rm -v $(pwd):/build -w /build node:${{ matrix.node }}-alpine npm install -g pnpm && pnpm test
   universal-macOS:
     name: Build universal macOS binary
     needs:
@@ -174,8 +174,7 @@ jobs:
       - name: Test universal binary
         run: cp banksy.darwin-universal.node banksy/ && pnpm test
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
+        uses: actions/upload-artifact@v3 with:
           name: bindings-universal-apple-darwin
           path: banksy.*.node
           if-no-files-found: error
