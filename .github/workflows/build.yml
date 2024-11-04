@@ -174,7 +174,8 @@ jobs:
       - name: Test universal binary
         run: cp banksy.darwin-universal.node banksy/ && pnpm test
       - name: Upload artifact
-        uses: actions/upload-artifact@v3 with:
+        uses: actions/upload-artifact@v3
+        with:
           name: bindings-universal-apple-darwin
           path: banksy.*.node
           if-no-files-found: error
