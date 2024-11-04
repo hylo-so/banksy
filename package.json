@@ -7,7 +7,7 @@
     "dist/"
   ],
   "napi": {
-		"name": "solana-bankrun",
+		"name": "banksy",
 		"triples": {
 			"defaults": false,
 			"additional": [
