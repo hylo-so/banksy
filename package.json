@@ -1,5 +1,5 @@
 {
-  "name": "@hylo/banksy",
+  "name": "@hylo-so/banksy",
   "version": "0.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -7,9 +7,18 @@
     "dist/"
   ],
   "napi": {
-    "name": "banksy",
-    "triples": {}
-  },
+		"name": "banksy",
+		"triples": {
+			"defaults": false,
+			"additional": [
+				"x86_64-apple-darwin",
+				"x86_64-unknown-linux-gnu",
+				"aarch64-apple-darwin",
+				"x86_64-unknown-linux-musl",
+				"universal-apple-darwin"
+			]
+		}
+	},
   "license": "MIT",
   "devDependencies": {
     "@napi-rs/cli": "^2.18.4",
@@ -34,6 +43,7 @@
     "tsc": "tsc && cp banksy/internal.d.ts dist/internal.d.ts",
     "lint:fix": "prettier */*.js \"*/**/*{.js,.ts}\" -w",
     "lint": "prettier */*.js \"*/**/*{.js,.ts}\" --check",
+    "lint:rust": "cargo clippy",
     "prepublishOnly": "napi prepublish -t npm",
     "test": "ava",
     "universal": "napi universal",

@@ -8,19 +8,11 @@ pub fn convert_to_pubkey(address: Uint8Array) -> Pubkey {
 }
 
 pub fn convert_to_option_pubkey(address: Option<Uint8Array>) -> Option<Pubkey> {
-  if address.is_some() {
-    Some(Pubkey::try_from(address.unwrap().as_ref()).unwrap())
-  } else {
-    None
-  }
+  address.and_then(|a| Pubkey::try_from(a.as_ref()).ok())
 }
 
 pub fn convert_to_option_u64(amount: Option<BigInt>) -> Option<u64> {
-  if amount.is_some() {
-    Some(amount.unwrap().get_u64().1)
-  } else {
-    None
-  }
+  amount.map(|b| b.get_u64().1)
 }
 
 #[derive(Debug, Clone)]

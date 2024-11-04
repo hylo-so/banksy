@@ -13,6 +13,7 @@ pub enum CallMsg {
     program_id: Pubkey,
     program_authority: Pubkey,
     program_data: Pubkey,
+    upgrade_slot: u64,
   },
   AddAccount {
     address: Pubkey,
@@ -46,36 +47,31 @@ impl CallMsg {
   pub fn process(pt: &mut ProgramTest, call_stack: &Vec<CallMsg>) {
     for msg in call_stack {
       match msg {
-        CallMsg::AddAccount { address, account } => {
-          pt.add_account(address.clone(), account.clone().into())
-        }
+        CallMsg::AddAccount { address, account } => pt.add_account(*address, account.clone()),
         CallMsg::AddProgram {
           name,
           program_id,
           program_authority,
-        } => pt.add_bpf_program(
-          name.as_str(),
-          program_id.clone(),
-          Some(program_authority.clone()),
-          None,
-        ),
+        } => pt.add_bpf_program(name.as_str(), *program_id, Some(*program_authority), None),
         CallMsg::AddUpgradeableProgram {
           name,
           program_id,
           program_authority,
           program_data,
+          upgrade_slot,
         } => pt.add_bpf_program_with_program_data(
           name.as_str(),
-          program_id.clone(),
-          Some(program_authority.clone()),
-          program_data.clone(),
+          *program_id,
+          Some(*program_authority),
+          *program_data,
+          *upgrade_slot,
           None,
         ),
         CallMsg::AddAccountWithLamports {
           address,
           owner,
           lamports,
-        } => pt.add_account_with_lamports(address.clone(), owner.clone(), lamports.clone()),
+        } => pt.add_account_with_lamports(*address, *owner, *lamports),
         CallMsg::AddTokenMint {
           address,
           mint_authority,
@@ -83,11 +79,11 @@ impl CallMsg {
           decimals,
           freeze_authority,
         } => pt.add_token_mint(
-          address.clone(),
-          mint_authority.clone(),
-          supply.clone(),
-          decimals.clone(),
-          freeze_authority.clone(),
+          *address,
+          *mint_authority,
+          *supply,
+          *decimals,
+          *freeze_authority,
         ),
         CallMsg::AddTokenAccount {
           address,
@@ -99,14 +95,14 @@ impl CallMsg {
           delegated_amount,
           close_authority,
         } => pt.add_token_account(
-          address.clone(),
-          mint.clone(),
-          owner.clone(),
-          amount.clone(),
-          delegate.clone(),
-          is_native.clone(),
-          delegated_amount.clone(),
-          close_authority.clone(),
+          *address,
+          *mint,
+          *owner,
+          *amount,
+          *delegate,
+          *is_native,
+          *delegated_amount,
+          *close_authority,
         ),
       }
     }

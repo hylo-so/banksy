@@ -1,15 +1,15 @@
 {
-  "name": "@hylo/banksy-win32-x64-msvc",
+  "name": "@hylo-so/banksy-darwin-x64",
   "version": "0.0.0",
   "os": [
-    "win32"
+    "darwin"
   ],
   "cpu": [
     "x64"
   ],
-  "main": "banksy.win32-x64-msvc.node",
+  "main": "banksy.darwin-x64.node",
   "files": [
-    "banksy.win32-x64-msvc.node"
+    "banksy.darwin-x64.node"
   ],
   "license": "MIT",
   "engines": {
