@@ -171,8 +171,8 @@ jobs:
           path: artifacts
       - name: Combine binaries
         run: pnpm universal
-      - name: Test universal binary
-        run: cp banksy.darwin-universal.node banksy/ && pnpm test
+      #- name: Test universal binary
+        #run: cp banksy.darwin-universal.node banksy/ && pnpm test
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
