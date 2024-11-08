@@ -1,15 +1,15 @@
 {
-  "name": "@hylo-so/banksy-darwin-x64",
+  "name": "@hylo-so/banksy-darwin-arm64",
   "version": "0.1.0",
   "os": [
     "darwin"
   ],
   "cpu": [
-    "x64"
+    "arm64"
   ],
-  "main": "banksy.darwin-x64.node",
+  "main": "banksy.darwin-arm64.node",
   "files": [
-    "banksy.darwin-x64.node"
+    "banksy.darwin-arm64.node"
   ],
   "license": "MIT",
   "engines": {
