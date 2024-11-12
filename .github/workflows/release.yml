@@ -22,6 +22,11 @@ jobs:
         with:
           workflow: build.yml
           path: artifacts
+      - name: List downloaded artifacts
+        run: |
+          echo "Contents of artifacts directory:"
+          ls -R ./artifacts
+        shell: bash
       - name: Move artifacts
         run: pnpm artifacts
       - name: Compile Typescript
