@@ -542,12 +542,14 @@ export class Banksy {
     programId: PublicKey,
     programAuthority: PublicKey,
     programData: PublicKey,
+    upgradeSlot: bigint
   ) {
     this.inner.addUpgradableProgram(
       name,
       programId.toBytes(),
       programAuthority.toBytes(),
       programData.toBytes(),
+      upgradeSlot
     );
   }
 
