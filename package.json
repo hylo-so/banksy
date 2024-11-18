@@ -18,7 +18,7 @@
         "universal-apple-darwin"
       ]
     }
-	},
+  },
   "license": "MIT",
   "devDependencies": {
     "@napi-rs/cli": "^2.18.4",
